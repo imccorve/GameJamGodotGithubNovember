@@ -29,7 +29,7 @@ var attackbox
 var is_attacking
 
 func _ready():
-	set_process(true)
+	set_fixed_process(true)
 	set_process_input(true)
 	sprite_node = get_node("Sprite")
 	hitbox = get_node("hitbox")
@@ -51,7 +51,7 @@ func attack_finished():
 	is_attacking = false
 	attackbox.disable()
 	
-func _process(delta):
+func _fixed_process(delta):
 	# input
 	if direction:
 		direction_sm = direction

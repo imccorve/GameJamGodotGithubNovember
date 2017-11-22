@@ -54,17 +54,20 @@ func _process(delta):
 		sprite_node.set_flip_h(true)
 		if(not anim.is_playing() or anim.get_current_animation().basename() != 'run'):
 			anim.play("run")
+	
 	else:
 		direction = 0
 	if direction:
 		speed_x += acceleration * delta
 	else:
 		speed_x -= deceleration * delta
-		anim.play("idle")
+		if(not anim.is_playing() or anim.get_current_animation().basename() != 'attack'):
+			anim.play("idle")
 	
 	# attack
 	if Input.is_action_pressed("attack"):
-		get_node("AnimationPlayer").play("attack")
+		if(not anim.is_playing() or anim.get_current_animation().basename() != 'attack'):
+			anim.play("attack")
 		attackbox.enable()
 
 		

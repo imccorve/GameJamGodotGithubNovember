@@ -1,25 +1,26 @@
-[gd_scene load_steps=31 format=1]
+[gd_scene load_steps=32 format=1]
 
 [ext_resource path="res://game/player/player.gd" type="Script" id=1]
-[ext_resource path="res://game/gui/char_jump.png" type="Texture" id=2]
+[ext_resource path="res://game/gui/char_attack.png" type="Texture" id=2]
 [ext_resource path="res://game/gui/char.png" type="Texture" id=3]
-[ext_resource path="res://game/player/sword.gd" type="Script" id=4]
-[ext_resource path="res://game/player/slash.tscn" type="PackedScene" id=5]
-[ext_resource path="res://slash.gd" type="Script" id=6]
-[ext_resource path="res://game/scenes/prog_under.png" type="Texture" id=7]
-[ext_resource path="res://game/scenes/prog_over.png" type="Texture" id=8]
-[ext_resource path="res://game/gui/health.gd" type="Script" id=9]
-[ext_resource path="res://game/footstep1.smp" type="Sample" id=10]
-[ext_resource path="res://game/footstep2.smp" type="Sample" id=11]
-[ext_resource path="res://game/scenes/level1/enemy.tscn" type="PackedScene" id=12]
-[ext_resource path="res://enemy_movement.gd" type="Script" id=13]
-[ext_resource path="res://game/music.smp" type="Sample" id=14]
-[ext_resource path="res://game/music.gd" type="Script" id=15]
-[ext_resource path="res://scrollingbackground.gd" type="Script" id=16]
-[ext_resource path="res://game/gui/background1.png" type="Texture" id=17]
-[ext_resource path="res://scrollingbackground2.gd" type="Script" id=18]
-[ext_resource path="res://game/gui/background2.png" type="Texture" id=19]
-[ext_resource path="res://game/tileset_snow.xml" type="TileSet" id=20]
+[ext_resource path="res://game/gui/char_jump.png" type="Texture" id=4]
+[ext_resource path="res://game/player/sword.gd" type="Script" id=5]
+[ext_resource path="res://game/player/slash.tscn" type="PackedScene" id=6]
+[ext_resource path="res://slash.gd" type="Script" id=7]
+[ext_resource path="res://game/scenes/prog_under.png" type="Texture" id=8]
+[ext_resource path="res://game/scenes/prog_over.png" type="Texture" id=9]
+[ext_resource path="res://game/gui/health.gd" type="Script" id=10]
+[ext_resource path="res://game/footstep1.smp" type="Sample" id=11]
+[ext_resource path="res://game/footstep2.smp" type="Sample" id=12]
+[ext_resource path="res://game/scenes/level1/enemy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://enemy_movement.gd" type="Script" id=14]
+[ext_resource path="res://game/music.smp" type="Sample" id=15]
+[ext_resource path="res://game/music.gd" type="Script" id=16]
+[ext_resource path="res://scrollingbackground.gd" type="Script" id=17]
+[ext_resource path="res://game/gui/background1.png" type="Texture" id=18]
+[ext_resource path="res://scrollingbackground2.gd" type="Script" id=19]
+[ext_resource path="res://game/gui/background2.png" type="Texture" id=20]
+[ext_resource path="res://game/tileset_snow.xml" type="TileSet" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -29,18 +30,38 @@ extents = Vector2( 7.15326, 18.2574 )
 [sub_resource type="Animation" id=2]
 
 resource/name = "attack"
-length = 1.0
+length = 0.8
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:transform/pos")
+tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 12.4344, 1.38159 ), Vector2( 0, 0 ) ]
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -59,6 +80,26 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
 
 [sub_resource type="Animation" id=4]
 
@@ -74,7 +115,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
@@ -163,40 +204,40 @@ tracks/4/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 18.5968, 14.2123 )
 
-[sub_resource type="SampleLibrary" id=10]
+[sub_resource type="SampleLibrary" id=7]
 
 samples/footstep1 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 10 )
+"sample": ExtResource( 11 )
 }
 samples/footstep2 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 11 )
+"sample": ExtResource( 12 )
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 237.046, 10 )
 
-[sub_resource type="Curve2D" id=8]
+[sub_resource type="Curve2D" id=9]
 
 bake_interval = 5.0
 _data = {
 "points": Vector2Array( 0, 0, 0, 0, -2.46069, 4.27746, 0, 0, 0, 0, -102.61, 2.30083, 0, 0, 0, 0, -349.688, 4.93633, 0, 0, 0, 0, -2.46069, 4.27746 )
 }
 
-[sub_resource type="SampleLibrary" id=9]
+[sub_resource type="SampleLibrary" id=10]
 
 samples/music = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 14 )
+"sample": ExtResource( 15 )
 }
 
 [node name="Node" type="Node"]
@@ -220,7 +261,8 @@ script/script = ExtResource( 1 )
 
 transform/scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
-hframes = 6
+hframes = 5
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
@@ -242,7 +284,7 @@ anims/run = SubResource( 5 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
+autoplay = "idle"
 
 [node name="hitbox" type="Area2D" parent="Player"]
 
@@ -255,7 +297,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/hitbox"]
@@ -265,10 +307,10 @@ shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
-[node name="attackbox" parent="Player" instance=ExtResource( 5 )]
+[node name="attackbox" parent="Player" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 73.4831, -33.3736 )
-script/script = ExtResource( 6 )
+script/script = ExtResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
@@ -315,17 +357,17 @@ range/page = 0.0
 range/value = 1.0
 range/exp_edit = false
 range/rounded = false
-texture/under = ExtResource( 7 )
+texture/under = ExtResource( 8 )
 texture/over = null
-texture/progress = ExtResource( 8 )
+texture/progress = ExtResource( 9 )
 radial_fill/fill_degrees = 360.0
 radial_fill/center_offset = Vector2( 0, 0 )
-script/script = ExtResource( 9 )
+script/script = ExtResource( 10 )
 
 [node name="SoundEffects" type="SamplePlayer" parent="Player"]
 
 config/polyphony = 1
-config/samples = SubResource( 10 )
+config/samples = SubResource( 7 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -346,7 +388,7 @@ transform/pos = Vector2( 246.979, 464.822 )
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -358,14 +400,14 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 trigger = false
 _update_shape_index = 0
 
 [node name="Path2D" type="Path2D" parent="."]
 
 transform/pos = Vector2( 623.578, 187.883 )
-curve = SubResource( 8 )
+curve = SubResource( 9 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 
@@ -380,15 +422,15 @@ lookahead = 4.0
 
 [node name="enemy" parent="Path2D/PathFollow2D" groups=[
 "enemy",
-] instance=ExtResource( 12 )]
+] instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 2.46069, -4.27747 )
-script/script = ExtResource( 13 )
+script/script = ExtResource( 14 )
 
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 9 )
+config/samples = SubResource( 10 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -401,7 +443,7 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
-script/script = ExtResource( 15 )
+script/script = ExtResource( 16 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -421,7 +463,7 @@ scroll/ignore_camera_zoom = true
 motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 1000, 0 )
-script/script = ExtResource( 16 )
+script/script = ExtResource( 17 )
 
 [node name="TextureFrame" type="TextureFrame" parent="ParallaxBackground/ParallaxLayer"]
 
@@ -434,7 +476,7 @@ margin/left = -702.0
 margin/top = -473.0
 margin/right = 298.0
 margin/bottom = 27.0
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 stretch_mode = 0
 
 [node name="ParallaxLayer 2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -442,7 +484,7 @@ stretch_mode = 0
 motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 1000, 0 )
-script/script = ExtResource( 18 )
+script/script = ExtResource( 19 )
 
 [node name="TextureFrame" type="TextureFrame" parent="ParallaxBackground/ParallaxLayer 2"]
 
@@ -454,14 +496,14 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 stretch_mode = 0
 
 [node name="TileMap" type="TileMap" parent="."]
 
 transform/scale = Vector2( 3, 3 )
 mode = 0
-tile_set = ExtResource( 20 )
+tile_set = ExtResource( 21 )
 cell/size = Vector2( 16, 16 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )

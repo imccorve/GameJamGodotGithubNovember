@@ -19,11 +19,15 @@ var MAX_JUMP_CNT = 2
 const JUMP_FORCE = 700
 const GRAVITY = 2500
 const MAX_FALL_SPEED  = 1000
+var is_jumping
+var is_falling
 
 var sprite_node
 var anim
 var hitbox 
 var attackbox
+var is_attacking
+
 func _ready():
 	set_process(true)
 	set_process_input(true)
@@ -31,44 +35,62 @@ func _ready():
 	hitbox = get_node("hitbox")
 	attackbox = get_node("attackbox")
 	anim = get_node("AnimationPlayer")
+	is_attacking = false
+	is_jumping = false
 	
 func _input(event):
 	if jump_cnt < MAX_JUMP_CNT and event.is_action_pressed("ui_up"):
 		speed_y = -JUMP_FORCE
 		jump_cnt += 1
-		if(not anim.is_playing()):
+		is_jumping = true
+		if(not anim.is_playing() or anim.get_current_animation().basename() != 'jump'):
 			anim.play("jump")
-	
+			
+func attack_finished():
+	print("attack finished")
+	is_attacking = false
+	attackbox.disable()
 	
 func _process(delta):
 	# input
 	if direction:
 		direction_sm = direction
-	if Input.is_action_pressed("ui_right"):
+
+	if Input.is_action_pressed("ui_right") and !is_attacking:
 		direction = 1
 		sprite_node.set_flip_h(false)
-		if(not anim.is_playing() or anim.get_current_animation().basename() != 'run'):
+		if(not anim.is_playing() or anim.get_current_animation().basename() != 'run') and !is_jumping:
 			anim.play("run")
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("ui_left") and !is_attacking:
 		direction = -1
 		sprite_node.set_flip_h(true)
-		if(not anim.is_playing() or anim.get_current_animation().basename() != 'run'):
+		if(not anim.is_playing() or anim.get_current_animation().basename() != 'run') and !is_jumping:
 			anim.play("run")
-	
 	else:
 		direction = 0
+#	if jump_cnt < MAX_JUMP_CNT and Input.is_action_pressed("ui_up"):
+#		speed_y = -JUMP_FORCE
+#		jump_cnt += 1
+#		is_jumping = true
+#		if(not anim.is_playing() or anim.get_current_animation().basename() != 'jump'):
+#			anim.play("jump")
+
+	
 	if direction:
 		speed_x += acceleration * delta
 	else:
 		speed_x -= deceleration * delta
-		if(not anim.is_playing() or anim.get_current_animation().basename() != 'attack'):
+	if speed_x <= 0 and !is_jumping and !is_attacking:
+		if(not anim.is_playing() or anim.get_current_animation().basename() != 'idle'):
 			anim.play("idle")
-	
+
 	# attack
 	if Input.is_action_pressed("attack"):
 		if(not anim.is_playing() or anim.get_current_animation().basename() != 'attack'):
+			print("attacking")
+			is_attacking = true
 			anim.play("attack")
-		attackbox.enable()
+			attackbox.enable()
 
 		
 	# movement calc
@@ -83,6 +105,7 @@ func _process(delta):
 	velocity.y = speed_y * delta
 	var movement_remainder = move(velocity)
 	
+
 	if is_colliding():
 		var normal = get_collision_normal()
 		var final_movement = normal.slide(movement_remainder)
@@ -90,7 +113,9 @@ func _process(delta):
 		move(final_movement)
 		
 		if normal == Vector2(0, -1):
+			is_jumping = false
 			jump_cnt = 0
+			
 	if is_colliding():
 
 		var entity = get_collider()

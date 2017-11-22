@@ -7,8 +7,8 @@ func _ready():
 	set_process(false)
 	disable()
 
-func free():
-	self.queue_free()
+#func free():
+#	self.queue_free()
 
 func enable():
     set_layer_mask(old_layer_mask)

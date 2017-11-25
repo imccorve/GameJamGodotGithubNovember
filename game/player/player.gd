@@ -28,6 +28,9 @@ var hitbox
 var attackbox
 var is_attacking
 
+var is_attacked 
+var DELAY_TIME = 100
+var attacked_delay = DELAY_TIME
 func _ready():
 	set_fixed_process(true)
 	set_process_input(true)
@@ -37,6 +40,9 @@ func _ready():
 	anim = get_node("AnimationPlayer")
 	is_attacking = false
 	is_jumping = false
+	
+	is_attacked = false
+	
 	
 func _input(event):
 	if jump_cnt < MAX_JUMP_CNT and event.is_action_pressed("ui_up"):
@@ -52,6 +58,8 @@ func attack_finished():
 	attackbox.disable()
 	
 func _fixed_process(delta):
+	
+	
 	# input
 	if direction:
 		direction_sm = direction
@@ -116,12 +124,22 @@ func _fixed_process(delta):
 			is_jumping = false
 			jump_cnt = 0
 			
+	# Being attacked
+	if is_attacked:
+		print("decre")
+		attacked_delay -= 2
+	if attacked_delay <= 0:
+		print("attack delay time up")
+		attacked_delay = DELAY_TIME
+		is_attacked = false
+	
 	if is_colliding():
 
 		var entity = get_collider()
-		if entity.is_in_group("enemy"):
+		if entity.is_in_group("enemy") && !is_attacked:
 			health -= 2
 			print("hit player")
+			is_attacked = true
 		
 	if health <= 0:
 		set_pos(Vector2(0,0))

@@ -46,4 +46,4 @@ func _process(delta):
 func _on_AnimationPlayer_finished(name):
 	if name == "attack":
 		_change_state(IDLE) 
-		emit_signal("attack_finished") # replace with function body
+

@@ -25,7 +25,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 7.15326, 18.2574 )
+extents = Vector2( 9.95274, 18.2574 )
 
 [sub_resource type="Animation" id=2]
 
@@ -301,7 +301,7 @@ autoplay = "idle"
 
 [node name="hitbox" type="Area2D" parent="Player"]
 
-transform/pos = Vector2( -69.0798, 0 )
+transform/pos = Vector2( -6.93765, 3.50098 )
 input/pickable = true
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 9.35617, -7.19708 )

@@ -425,7 +425,7 @@ _update_shape_index = 0
 
 [node name="Path2D" type="Path2D" parent="."]
 
-transform/pos = Vector2( 633.73, 326.627 )
+transform/pos = Vector2( 633.73, 348.298 )
 curve = SubResource( 9 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
@@ -448,7 +448,7 @@ script/script = ExtResource( 14 )
 
 [node name="Path2D2" type="Path2D" parent="."]
 
-transform/pos = Vector2( 3259.71, 468.754 )
+transform/pos = Vector2( 3259.71, 484.899 )
 curve = SubResource( 9 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
@@ -471,7 +471,7 @@ script/script = ExtResource( 14 )
 
 [node name="Path2D4" type="Path2D" parent="."]
 
-transform/pos = Vector2( 6979.07, 464.547 )
+transform/pos = Vector2( 6979.07, 481.471 )
 curve = SubResource( 9 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D4"]
@@ -494,7 +494,7 @@ script/script = ExtResource( 14 )
 
 [node name="Path2D3" type="Path2D" parent="."]
 
-transform/pos = Vector2( 5536.12, 211.128 )
+transform/pos = Vector2( 5536.12, 233.693 )
 curve = SubResource( 9 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
@@ -563,15 +563,16 @@ size_flags/vertical = 2
 margin/left = -702.0
 margin/top = -473.0
 margin/right = 298.0
-margin/bottom = 27.0
+margin/bottom = 241.0
 texture = ExtResource( 18 )
+expand = true
 stretch_mode = 0
 
 [node name="ParallaxLayer 2" type="ParallaxLayer" parent="ParallaxBackground"]
 
 motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
-motion/mirroring = Vector2( 1000, 0 )
+motion/mirroring = Vector2( 2000, 0 )
 script/script = ExtResource( 19 )
 
 [node name="TextureFrame" type="TextureFrame" parent="ParallaxBackground/ParallaxLayer 2"]
@@ -580,11 +581,12 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+margin/left = -302.0
+margin/top = -408.0
+margin/right = 1678.0
+margin/bottom = 1018.0
 texture = ExtResource( 20 )
+expand = true
 stretch_mode = 0
 
 [node name="TileMap" type="TileMap" parent="."]

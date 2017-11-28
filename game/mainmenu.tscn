@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://game/mainmenu.gd" type="Script" id=1]
+[ext_resource path="res://game/gui/Norse/Norse.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 70
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
 
 [node name="Control" type="Control"]
 
@@ -15,20 +23,49 @@ margin/bottom = 40.0
 script/script = ExtResource( 1 )
 button_path = NodePath("Button")
 
+[node name="Panel" type="Panel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1028.0
+margin/bottom = 608.0
+
 [node name="Button" type="Button" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 294.0
-margin/top = 161.0
-margin/right = 374.0
-margin/bottom = 181.0
+margin/left = 457.0
+margin/top = 250.0
+margin/right = 537.0
+margin/bottom = 270.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "start game"
+text = "begin"
 flat = false
+
+[node name="Title" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 374.0
+margin/top = 115.0
+margin/right = 615.0
+margin/bottom = 186.0
+custom_fonts/font = SubResource( 1 )
+text = "EverGreen"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 

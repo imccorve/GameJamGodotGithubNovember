@@ -650,4 +650,6 @@ _update_shape_index = 0
 
 [connection signal="body_enter" from="outerbounds" to="outerbounds" method="_on_outerbounds_body_enter"]
 
+[connection signal="body_enter" from="outerbounds1" to="outerbounds1" method="_on_outerbounds1_body_enter"]
+
 

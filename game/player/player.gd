@@ -126,25 +126,29 @@ func _fixed_process(delta):
 			
 	# Being attacked
 	if is_attacked:
-		print("decre")
+
 		attacked_delay -= 2
 	if attacked_delay <= 0:
 		print("attack delay time up")
 		attacked_delay = DELAY_TIME
 		is_attacked = false
 	
-	if is_colliding():
+	#if is_colliding():
 
-		var entity = get_collider()
-		if entity.is_in_group("enemy") && !is_attacked:
-			health -= 2
-			print("hit player")
-			is_attacked = true
+	#	var entity = get_collider()
+	#	if entity.is_in_group("enemy") && !is_attacked:
+			#health -= 2
+	#		print("hit player")
+	#		is_attacked = true
 		
 	if health <= 0:
 		set_pos(Vector2(0,0))
 		health = 100
-
+func take_damage(dmg):
+	print(health)
+	if !is_attacked:
+		health -= dmg
+		is_attacked = true
 func foot_step():
 	get_node("SoundEffects").play("footstep" + str(randi() % 2 + 1))
 	

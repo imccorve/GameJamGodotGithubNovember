@@ -4,7 +4,7 @@ extends KinematicBody2D
 # var a = 2
 # var b = "textvar"
 var speed = 0
-var damage = 1
+var damage = 5
 var direction = 0
 var MAX_SPEED = 300
 var MAX_HEALTH = 50
@@ -31,6 +31,10 @@ func _on_hitbox_body_enter( body ):
 	if (body extends attack):
 		print("took damage")
 		_take_damage()
+	elif (body.is_in_group("player")):
+		body.take_damage(damage)
+		print("entered")
+		pass
 	
 func _take_damage():
 

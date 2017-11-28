@@ -31,6 +31,9 @@ var is_attacking
 var is_attacked 
 var DELAY_TIME = 100
 var attacked_delay = DELAY_TIME
+
+var canMove = true
+var canInteract = false
 func _ready():
 	set_fixed_process(true)
 	set_process_input(true)
@@ -82,7 +85,8 @@ func _fixed_process(delta):
 #		is_jumping = true
 #		if(not anim.is_playing() or anim.get_current_animation().basename() != 'jump'):
 #			anim.play("jump")
-
+	if Input.is_action_pressed("interact"):
+		pass
 	
 	if direction:
 		speed_x += acceleration * delta
@@ -151,6 +155,8 @@ func take_damage(dmg):
 		is_attacked = true
 func foot_step():
 	get_node("SoundEffects").play("footstep" + str(randi() % 2 + 1))
+
+
 	
 
 	

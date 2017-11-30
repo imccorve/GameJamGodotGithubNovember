@@ -15,7 +15,7 @@ func _ready():
 	set_process(false)
 
 func attack():
-	print("attack")
+
 	_change_state(ATTACK)
 	
 func _change_state(new_state):
@@ -28,17 +28,17 @@ func _change_state(new_state):
 	
 	
 func _process(delta):
-	print("on")
+
 	#var overlapping_bodies = get_overlapping_areas()
 	var overlapping_bodies = get_overlapping_areas()
 	if overlapping_bodies == null:
-		print("null")
+
 		return
 	print(overlapping_bodies)
 	for body in overlapping_bodies:
-		print(body)
+
 		if body.is_in_group("enemy"):
-			print("not null")
+
 			body.take_damage(damage)
 	set_process(false)
 

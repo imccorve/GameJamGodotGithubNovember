@@ -28,7 +28,7 @@ func _process(delta):
 	path.set_offset(path.get_offset() + (50*delta))
 	attack_delay -= 5
 	if attack_delay <= 0 :
-		print("enemy attacks")
+
 		is_attacking = true
 		var projectile = projectile_scene.instance()
 		get_parent().get_parent().get_parent().add_child(projectile)
@@ -38,14 +38,13 @@ func _process(delta):
 		attack_delay = DELAY_TIME
 		
 func _on_hitbox_body_enter( body ):
-
 	
 	if (body extends attack):
-		print("took damage")
+		print("its extendin")
 		_take_damage()
 	elif (body.is_in_group("player")):
 		body.take_damage(damage)
-		print("entered")
+
 		pass
 	
 func _take_damage():

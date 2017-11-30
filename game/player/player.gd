@@ -57,16 +57,17 @@ func _input(event):
 			anim.play("jump")
 			
 func attack_finished():
-	print("attack finished")
+	print("is finishing")
+
 	is_attacking = false
-	attackbox.disable()
+	attackbox.change_state(attackbox.STATES.IDLE)
 	
 func _fixed_process(delta):
 	
 	
 	# input
 	if Input.is_action_pressed("interact") and canInteract:
-		print("Interacting with " + target.get_name())
+
 		
 		get_node("../DialogueParser").init_dialogue(target.get_name())
 		canMove = false
@@ -106,11 +107,16 @@ func _fixed_process(delta):
 	
 		# attack
 		if Input.is_action_pressed("attack"):
+
 			if(not anim.is_playing() or anim.get_current_animation().basename() != 'attack'):
+				print("attacking")
 				get_node("SoundEffects").play("slice")
 				is_attacking = true
 				anim.play("attack")
-				attackbox.enable()
+
+				attackbox.change_state(attackbox.STATES.ATTACK)
+
+
 	
 			
 		# movement calc
@@ -141,7 +147,7 @@ func _fixed_process(delta):
 
 		attacked_delay -= 2
 	if attacked_delay <= 0:
-		print("attack delay time up")
+
 		attacked_delay = DELAY_TIME
 		is_attacked = false
 	
@@ -157,7 +163,6 @@ func _fixed_process(delta):
 		set_pos(Vector2(0,0))
 		health = 100
 func take_damage(dmg):
-	print(health)
 	if !is_attacked:
 		health -= dmg
 		is_attacked = true
@@ -184,7 +189,7 @@ func save():
 
 func _on_Area2D_body_enter( body , obj):
 	if(body.get_name() == "Player"):
-		print("entering")
+
 		canInteract = true
 		target = obj
 
@@ -192,7 +197,7 @@ func _on_Area2D_body_enter( body , obj):
 
 func _on_Area2D_body_exit( body , obj ):
 	if(body.get_name() == "Player"):
-		print("leavin")
+
 		canInteract = false
 		target = null
 	pass # replace with function body

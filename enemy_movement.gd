@@ -26,15 +26,19 @@ func _process(delta):
 
 		
 func _on_hitbox_body_enter( body ):
-
-	
-	if (body extends attack):
-		print("took damage")
-		_take_damage()
-	elif (body.is_in_group("player")):
+	print("entering enemy " + body.get_name())
+	#if (body.is_in_group("attack")):
+	#	print("Helloooo")
+	#	_take_damage()
+	#print(body.get_name())
+	#if (body extends attack):
+	#	print("enemy attacked")
+	#	_take_damage()
+	#elif (body.is_in_group("player")):
+	#	body.take_damage(damage)
+	if(body.is_in_group("player")):
 		body.take_damage(damage)
-		print("entered")
-		pass
+		
 	
 func _take_damage():
 
@@ -49,3 +53,15 @@ func _death():
 	get_node("CollisionShape2D").set_trigger(true)
 	hide()
 	set_process(false)
+
+
+func _on_hitbox_area_enter( area ):
+
+	if (area.is_in_group("attack")):
+		_take_damage()
+	if (area extends attack):
+		print("enemy attacked")
+		_take_damage()
+
+
+

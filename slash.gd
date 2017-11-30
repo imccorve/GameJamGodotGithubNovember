@@ -13,6 +13,8 @@ func _ready():
 func enable():
     set_layer_mask(old_layer_mask)
     set_collision_mask(old_collision_mask)
+    set_process(true)
+
 func disable():
     old_layer_mask = get_layer_mask()
     old_collision_mask = get_collision_mask()

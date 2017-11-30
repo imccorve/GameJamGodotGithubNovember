@@ -10,7 +10,8 @@ var deceleration = 5000
 const MAX_speed = 500
 var velocity = Vector2()
 var direction = 0
-
+var orientright = true
+var change = false
 # smoothing the stops
 var direction_sm = 0
 
@@ -35,7 +36,14 @@ var attacked_delay = DELAY_TIME
 var canMove = true
 var canInteract = false
 var target
+
+var ab
+var ab_x
+var ab_y
 func _ready():
+	ab = get_node("attackbox")
+	ab_x = ab.get_pos().x
+	ab_y = ab.get_pos().y
 	set_fixed_process(true)
 	set_process_input(true)
 	sprite_node = get_node("Sprite")
@@ -63,8 +71,7 @@ func attack_finished():
 	attackbox.change_state(attackbox.STATES.IDLE)
 	
 func _fixed_process(delta):
-	
-	
+
 	# input
 	if Input.is_action_pressed("interact") and canInteract:
 
@@ -79,17 +86,25 @@ func _fixed_process(delta):
 			direction_sm = direction
 		
 		if Input.is_action_pressed("ui_right") and !is_attacking:
+
+
 			direction = 1
 			sprite_node.set_flip_h(false)
+			ab.set_pos(Vector2(ab_x, ab.get_pos().y))
 			if(not anim.is_playing() or anim.get_current_animation().basename() != 'run') and !is_jumping:
 				anim.play("run")
 		elif Input.is_action_pressed("ui_left") and !is_attacking:
+
+
 			direction = -1
 			sprite_node.set_flip_h(true)
+			ab.set_pos(Vector2(-ab_x, ab.get_pos().y))
 			if(not anim.is_playing() or anim.get_current_animation().basename() != 'run') and !is_jumping:
 				anim.play("run")
 		else:
 			direction = 0
+
+
 #	if jump_cnt < MAX_JUMP_CNT and Input.is_action_pressed("ui_up"):
 #		speed_y = -JUMP_FORCE
 #		jump_cnt += 1
@@ -113,7 +128,9 @@ func _fixed_process(delta):
 				get_node("SoundEffects").play("slice")
 				is_attacking = true
 				anim.play("attack")
-
+				if !orientright:
+					ab.set_pos(Vector2(-ab.get_pos().x,ab.get_pos().y))
+				
 				attackbox.change_state(attackbox.STATES.ATTACK)
 
 

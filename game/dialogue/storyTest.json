@@ -26,7 +26,7 @@
         "doorInitial": {
             "0": {
                 "content": [
-                    "The door is locked, you need an invitation to get in!",
+                    "You did it! You found me!",
                     {
                         "isEnd": true
                     }

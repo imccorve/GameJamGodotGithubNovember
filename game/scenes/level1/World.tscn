@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=1]
+[gd_scene load_steps=43 format=1]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://game/player/player.gd" type="Script" id=2]
@@ -15,17 +15,19 @@
 [ext_resource path="res://game/gui/Norse/Norse.otf" type="DynamicFontData" id=13]
 [ext_resource path="res://game/footstep1.smp" type="Sample" id=14]
 [ext_resource path="res://game/footstep2.smp" type="Sample" id=15]
-[ext_resource path="res://game/scenes/level1/enemy.tscn" type="PackedScene" id=16]
-[ext_resource path="res://enemy_movement.gd" type="Script" id=17]
-[ext_resource path="res://game/music.smp" type="Sample" id=18]
-[ext_resource path="res://game/music.gd" type="Script" id=19]
-[ext_resource path="res://scrollingbackground.gd" type="Script" id=20]
-[ext_resource path="res://game/gui/background1.png" type="Texture" id=21]
-[ext_resource path="res://scrollingbackground2.gd" type="Script" id=22]
-[ext_resource path="res://game/gui/background2.png" type="Texture" id=23]
-[ext_resource path="res://game/tileset_snow.xml" type="TileSet" id=24]
-[ext_resource path="res://game/scenes/.gd" type="Script" id=25]
-[ext_resource path="res://DialogueParser.gd" type="Script" id=26]
+[ext_resource path="res://game/sound/109410__black-snow__sword-slice-01.wav" type="Sample" id=16]
+[ext_resource path="res://game/scenes/level1/enemy.tscn" type="PackedScene" id=17]
+[ext_resource path="res://enemy_movement.gd" type="Script" id=18]
+[ext_resource path="res://game/scenes/level1/enemy_boss.gd" type="Script" id=19]
+[ext_resource path="res://game/music.smp" type="Sample" id=20]
+[ext_resource path="res://game/music.gd" type="Script" id=21]
+[ext_resource path="res://scrollingbackground.gd" type="Script" id=22]
+[ext_resource path="res://game/gui/background1.png" type="Texture" id=23]
+[ext_resource path="res://scrollingbackground2.gd" type="Script" id=24]
+[ext_resource path="res://game/gui/background2.png" type="Texture" id=25]
+[ext_resource path="res://game/tileset_snow.xml" type="TileSet" id=26]
+[ext_resource path="res://game/scenes/.gd" type="Script" id=27]
+[ext_resource path="res://DialogueParser.gd" type="Script" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -221,14 +223,14 @@ tracks/4/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 18.5968, 14.2123 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=7]
 
 font/size = 20
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 13 )
 
-[sub_resource type="SampleLibrary" id=7]
+[sub_resource type="SampleLibrary" id=8]
 
 samples/footstep1 = {
 "db": 0.0,
@@ -242,39 +244,45 @@ samples/footstep2 = {
 "priority": 0,
 "sample": ExtResource( 15 )
 }
+samples/slice = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 16 )
+}
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
 extents = Vector2( 237.046, 10 )
 
-[sub_resource type="Curve2D" id=9]
+[sub_resource type="Curve2D" id=10]
 
 bake_interval = 5.0
 _data = {
-"points": Vector2Array( 0, 0, 0, 0, -2.46069, 4.27746, 0, 0, 0, 0, -102.61, 2.30083, 0, 0, 0, 0, -275.619, 2.92017, 0, 0, 0, 0, -2.46069, 4.27746 )
+"points": Vector2Array( 0, 0, 0, 0, -2.46069, 4.27746, 0, 0, 0, 0, -351.783, 6.14099, 0, 0, 0, 0, -844.87, 12.8496, 0, 0, 0, 0, -2.46069, 4.27746 )
 }
 
-[sub_resource type="SampleLibrary" id=10]
+[sub_resource type="SampleLibrary" id=11]
 
 samples/music = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 18 )
+"sample": ExtResource( 20 )
 }
-
-[sub_resource type="RectangleShape2D" id=11]
-
-custom_solver_bias = 0.0
-extents = Vector2( 31.7674, 10 )
 
 [sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
-extents = Vector2( 37.6388, 30.0089 )
+extents = Vector2( 31.7674, 10 )
 
 [sub_resource type="RectangleShape2D" id=13]
+
+custom_solver_bias = 0.0
+extents = Vector2( 37.6388, 30.0089 )
+
+[sub_resource type="RectangleShape2D" id=14]
 
 custom_solver_bias = 0.0
 extents = Vector2( 20.034, 48.4521 )
@@ -304,7 +312,7 @@ transform/pos = Vector2( 0, -2.90852 )
 transform/scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
 hframes = 5
-frame = 4
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
@@ -432,14 +440,14 @@ margin/bottom = 73.0
 margin/left = 20.0
 margin/right = 900.0
 margin/bottom = 74.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 valign = 1
 
 [node name="SoundEffects" type="SamplePlayer" parent="Player"]
 
 config/polyphony = 1
-config/samples = SubResource( 7 )
+config/samples = SubResource( 8 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -460,7 +468,7 @@ transform/pos = Vector2( 246.979, 464.822 )
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -472,14 +480,14 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 trigger = false
 _update_shape_index = 0
 
 [node name="Path2D" type="Path2D" parent="."]
 
 transform/pos = Vector2( 633.73, 348.298 )
-curve = SubResource( 9 )
+curve = SubResource( 10 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 
@@ -494,15 +502,15 @@ lookahead = 4.0
 
 [node name="enemy" parent="Path2D/PathFollow2D" groups=[
 "enemy",
-] instance=ExtResource( 16 )]
+] instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2.46069, -4.27747 )
-script/script = ExtResource( 17 )
+script/script = ExtResource( 18 )
 
 [node name="Path2D2" type="Path2D" parent="."]
 
 transform/pos = Vector2( 3259.71, 484.899 )
-curve = SubResource( 9 )
+curve = SubResource( 10 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
 
@@ -517,15 +525,15 @@ lookahead = 4.0
 
 [node name="enemy" parent="Path2D2/PathFollow2D" groups=[
 "enemy",
-] instance=ExtResource( 16 )]
+] instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2.46069, -4.27747 )
-script/script = ExtResource( 17 )
+script/script = ExtResource( 18 )
 
 [node name="Path2D4" type="Path2D" parent="."]
 
 transform/pos = Vector2( 6979.07, 481.471 )
-curve = SubResource( 9 )
+curve = SubResource( 10 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D4"]
 
@@ -540,15 +548,15 @@ lookahead = 4.0
 
 [node name="enemy" parent="Path2D4/PathFollow2D" groups=[
 "enemy",
-] instance=ExtResource( 16 )]
+] instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2.46069, -4.27747 )
-script/script = ExtResource( 17 )
+script/script = ExtResource( 18 )
 
 [node name="Path2D3" type="Path2D" parent="."]
 
 transform/pos = Vector2( 5536.12, 233.693 )
-curve = SubResource( 9 )
+curve = SubResource( 10 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
 
@@ -563,15 +571,42 @@ lookahead = 4.0
 
 [node name="enemy" parent="Path2D3/PathFollow2D" groups=[
 "enemy",
-] instance=ExtResource( 16 )]
+] instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 2.46069, -4.27747 )
-script/script = ExtResource( 17 )
+script/script = ExtResource( 18 )
+
+[node name="Path2D1" type="Path2D" parent="."]
+
+transform/pos = Vector2( 7587.47, 1339.65 )
+curve = SubResource( 10 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D1"]
+
+transform/pos = Vector2( -2.46069, 4.27746 )
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = false
+cubic_interp = true
+loop = true
+lookahead = 4.0
+
+[node name="enemy_boss" parent="Path2D1/PathFollow2D" groups=[
+"enemy",
+] instance=ExtResource( 17 )]
+
+transform/pos = Vector2( 2.46069, -4.27747 )
+script/script = ExtResource( 19 )
+
+[node name="Position2D" type="Position2D" parent="Path2D1/PathFollow2D/enemy_boss"]
+
+transform/pos = Vector2( -22.0054, -38.3062 )
 
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 10 )
+config/samples = SubResource( 11 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -584,7 +619,7 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
-script/script = ExtResource( 19 )
+script/script = ExtResource( 21 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -604,7 +639,7 @@ scroll/ignore_camera_zoom = true
 motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 1000, 0 )
-script/script = ExtResource( 20 )
+script/script = ExtResource( 22 )
 
 [node name="TextureFrame" type="TextureFrame" parent="ParallaxBackground/ParallaxLayer"]
 
@@ -617,7 +652,7 @@ margin/left = -702.0
 margin/top = -473.0
 margin/right = 298.0
 margin/bottom = 241.0
-texture = ExtResource( 21 )
+texture = ExtResource( 23 )
 expand = true
 stretch_mode = 0
 
@@ -626,7 +661,7 @@ stretch_mode = 0
 motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 2000, 0 )
-script/script = ExtResource( 22 )
+script/script = ExtResource( 24 )
 
 [node name="TextureFrame" type="TextureFrame" parent="ParallaxBackground/ParallaxLayer 2"]
 
@@ -638,7 +673,7 @@ margin/left = -302.0
 margin/top = -408.0
 margin/right = 1678.0
 margin/bottom = 1018.0
-texture = ExtResource( 23 )
+texture = ExtResource( 25 )
 expand = true
 stretch_mode = 0
 
@@ -646,7 +681,7 @@ stretch_mode = 0
 
 transform/scale = Vector2( 3, 3 )
 mode = 0
-tile_set = ExtResource( 24 )
+tile_set = ExtResource( 26 )
 cell/size = Vector2( 16, 16 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -666,18 +701,18 @@ tile_data = IntArray( 393325, 12, 393326, 13, 393327, 13, 393328, 13, 393329, 13
 transform/pos = Vector2( 1858.39, 1036.3 )
 transform/scale = Vector2( 74.8424, 1 )
 input/pickable = true
-shapes/0/shape = SubResource( 11 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 25 )
+script/script = ExtResource( 27 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="outerbounds"]
 
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 trigger = false
 _update_shape_index = 0
 
@@ -687,18 +722,18 @@ editor/display_folded = true
 transform/pos = Vector2( 8623, 962.559 )
 transform/scale = Vector2( 23.706, 1 )
 input/pickable = true
-shapes/0/shape = SubResource( 11 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 25 )
+script/script = ExtResource( 27 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="outerbounds1"]
 
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 trigger = false
 _update_shape_index = 0
 
@@ -708,10 +743,10 @@ _update_shape_index = 0
 
 [node name="Area2D" type="Area2D" parent="Door"]
 
-transform/pos = Vector2( 92.5711, 329.148 )
+transform/pos = Vector2( 6648.99, 1313.92 )
 transform/scale = Vector2( 1.74398, 1.72861 )
 input/pickable = true
-shapes/0/shape = SubResource( 12 )
+shapes/0/shape = SubResource( 13 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -721,15 +756,15 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
 
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 trigger = false
 _update_shape_index = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Door"]
 
-transform/pos = Vector2( 96.9589, 331.152 )
+transform/pos = Vector2( 6637.51, 1339.79 )
 input/pickable = false
-shapes/0/shape = SubResource( 13 )
+shapes/0/shape = SubResource( 14 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -747,13 +782,13 @@ hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/StaticBody2D"]
 
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 trigger = false
 _update_shape_index = 0
 
 [node name="DialogueParser" type="Node" parent="."]
 
-script/script = ExtResource( 26 )
+script/script = ExtResource( 28 )
 
 [connection signal="finished" from="Player/AnimationPlayer" to="Player/hitbox" method="_on_AnimationPlayer_finished"]
 
@@ -763,3 +798,4 @@ script/script = ExtResource( 26 )
 
 
 [editable path="Player/Camera2D/CanvasLayer/Dialogue Box"]
+[editable path="Path2D1/PathFollow2D/enemy_boss"]

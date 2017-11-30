@@ -72,6 +72,7 @@ func _fixed_process(delta):
 		canMove = false
 		canInteract = false
 		
+		
 	if canMove:
 		if direction:
 			direction_sm = direction
@@ -106,7 +107,7 @@ func _fixed_process(delta):
 		# attack
 		if Input.is_action_pressed("attack"):
 			if(not anim.is_playing() or anim.get_current_animation().basename() != 'attack'):
-				print("attacking")
+				get_node("SoundEffects").play("slice")
 				is_attacking = true
 				anim.play("attack")
 				attackbox.enable()

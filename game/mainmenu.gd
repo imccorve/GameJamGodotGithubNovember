@@ -14,3 +14,4 @@ func _ready():
 	
 func on_pressed():
 	get_tree().change_scene("res://game/scenes/level1/World.tscn")
+	

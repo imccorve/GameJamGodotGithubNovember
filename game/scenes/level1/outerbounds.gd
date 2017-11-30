@@ -11,7 +11,7 @@ func _ready():
 
 
 
-func _on_outerbounds1_body_enter( body ):
+func _on_outerbounds_body_enter( body ):
 	if body extends KinematicBody2D:
 		print("out of bounds")
 		body.set_pos(Vector2(0,0)) # replace with function body

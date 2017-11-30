@@ -48,11 +48,8 @@ func _take_damage():
 		_death()
 		
 func _death():
-	#hacky death
-	print("death")
-	get_node("CollisionShape2D").set_trigger(true)
-	hide()
-	set_process(false)
+	queue_free()
+
 
 
 func _on_hitbox_area_enter( area ):

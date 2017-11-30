@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=1]
+[gd_scene load_steps=44 format=1]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://game/player/player.gd" type="Script" id=2]
@@ -26,7 +26,7 @@
 [ext_resource path="res://scrollingbackground2.gd" type="Script" id=24]
 [ext_resource path="res://game/gui/background2.png" type="Texture" id=25]
 [ext_resource path="res://game/tileset_snow.xml" type="TileSet" id=26]
-[ext_resource path="res://game/scenes/.gd" type="Script" id=27]
+[ext_resource path="res://game/scenes/level1/outerbounds.gd" type="Script" id=27]
 [ext_resource path="res://DialogueParser.gd" type="Script" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -276,6 +276,27 @@ samples/music = {
 
 custom_solver_bias = 0.0
 extents = Vector2( 31.7674, 10 )
+
+[sub_resource type="GDScript" id=15]
+
+script/source = "extends Area2D
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	pass
+
+
+
+
+
+func _on_outerbounds1_body_enter( body ):
+	if body extends KinematicBody2D:
+		print(\"out of bounds\")
+		body.set_pos(Vector2(0,0)) # replace with function body
+"
 
 [sub_resource type="RectangleShape2D" id=13]
 
@@ -729,7 +750,6 @@ _update_shape_index = 0
 
 [node name="outerbounds1" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 8623, 962.559 )
 transform/scale = Vector2( 23.706, 1 )
 input/pickable = true
@@ -740,7 +760,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 27 )
+script/script = SubResource( 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="outerbounds1"]
 

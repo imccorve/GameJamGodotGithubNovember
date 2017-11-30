@@ -57,6 +57,7 @@ func _take_damage():
 func _death():
 	#hacky death
 	print("death")
-	get_node("CollisionShape2D").set_trigger(true)
-	hide()
-	set_process(false)
+	queue_free()
+	#get_node("CollisionShape2D").set_trigger(true)
+	#hide()
+	#set_process(false)

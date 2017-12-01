@@ -11,6 +11,18 @@
                 "Flag": "haveInvitation"
             }
         },
+        "EndGame": {
+            "Start": {
+                "Name": "endgame",
+                "Flag": false
+            }
+        },
+        "Tut_Interact": {
+            "Start": {
+                "Name": "intertut",
+                "Flag": false
+            }
+        },
         "InteractableObj": {
             "Start": {
                 "Name": "test",
@@ -44,6 +56,12 @@
             },
             "Repeat": {
                 "Name": "itemFound",
+                "Flag": false
+            }
+        },
+        "Tutorial": {
+            "Start": {
+                "Name": "firstTut",
                 "Flag": false
             }
         }

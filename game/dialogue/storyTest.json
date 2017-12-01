@@ -67,6 +67,55 @@
             },
             "initial": "0"
         },
+        "firstTut": {
+            "0": {
+                "content": [
+                    "Welcome to this short game I made!\nUse your mouse to press the button on the bottom of the screen.",
+                    {
+                            "divert": "1"
+                        }
+                    ]
+                },
+                "1": {
+                    "content": [
+                        "Jump with Space Bar and Attack with 'A'.",
+                        {
+                            "divert": "2"
+                        }
+                    ]
+                },
+                "2": {
+                    "content": [
+                        "Move around with the arrow notepad on your computer.",
+                        {
+                            "isEnd": true
+                        }
+                    ]
+                },
+            "initial": "0"
+        },
+        "endgame": {
+            "0": {
+                "content": [
+                    "Well that's it. You've reached the end. Thanks for taking the time to play!\n",
+                    {
+                            "isEnd": true
+                        }
+                    ]
+            },
+            "initial": "0"
+        },
+        "intertut": {
+            "0": {
+                "content": [
+                    "Press space bar to interact with other characters!",
+                    {
+                            "isEnd": true
+                        }
+                    ]
+            },
+            "initial": "0"
+        },
         "storyTestRepeat": {
             "0": {
                 "content": [

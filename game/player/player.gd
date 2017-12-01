@@ -17,7 +17,7 @@ var direction_sm = 0
 
 var jump_cnt = 0
 var MAX_JUMP_CNT = 2
-const JUMP_FORCE = 700
+const JUMP_FORCE = 750
 const GRAVITY = 2500
 const MAX_FALL_SPEED  = 1000
 var is_jumping
@@ -40,6 +40,9 @@ var target
 var ab
 var ab_x
 var ab_y
+
+var score_label
+var score = 0
 func _ready():
 	ab = get_node("attackbox")
 	ab_x = ab.get_pos().x
@@ -54,8 +57,9 @@ func _ready():
 	is_jumping = false
 	
 	is_attacked = false
-	
-	
+
+	score_label = get_node("Camera2D/CanvasLayer/Score")
+
 func _input(event):
 	if jump_cnt < MAX_JUMP_CNT and event.is_action_pressed("ui_up") and canMove:
 		speed_y = -JUMP_FORCE
@@ -69,14 +73,18 @@ func attack_finished():
 
 	is_attacking = false
 	attackbox.change_state(attackbox.STATES.IDLE)
-	
+func stop_movement():
+		anim.play("idle")
+		canMove = false
+		canInteract = false
 func _fixed_process(delta):
 
 	# input
 	if Input.is_action_pressed("interact") and canInteract:
-
+		anim.play("idle")
 		
 		get_node("../DialogueParser").init_dialogue(target.get_name())
+		
 		canMove = false
 		canInteract = false
 		
@@ -202,7 +210,10 @@ func save():
 	}
 	return save_dict
 	
-
+func raise_score():
+	score += 1
+	score_label.set_text(str(score))
+	
 
 func _on_Area2D_body_enter( body , obj):
 	if(body.get_name() == "Player"):

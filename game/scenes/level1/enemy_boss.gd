@@ -31,9 +31,10 @@ func _process(delta):
 
 		is_attacking = true
 		var projectile = projectile_scene.instance()
+
 		get_parent().get_parent().get_parent().add_child(projectile)
 		projectile.set_pos(get_node("Position2D").get_global_pos())
-
+		
 
 		attack_delay = DELAY_TIME
 		

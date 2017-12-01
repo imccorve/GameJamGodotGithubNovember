@@ -14,6 +14,7 @@ var attack = preload("res://attack.gd")
 var DELAY_TIME = 400
 var attack_delay = DELAY_TIME
 var is_attacking 
+var player
 func _ready():
 	
 	is_attacking = false
@@ -37,13 +38,16 @@ func _on_hitbox_body_enter( body ):
 	#elif (body.is_in_group("player")):
 	#	body.take_damage(damage)
 	if(body.is_in_group("player")):
+		player = body
 		body.take_damage(damage)
+		
 		
 	
 func _take_damage():
-
+	
 	health -= damage
 	if health <= 0:
+
 		print("dead")
 		_death()
 		
